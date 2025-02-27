@@ -1,4 +1,3 @@
-// src/routes/+page.svelte (Landing Page)
 <script>
     import { goto } from '$app/navigation';
     let games = [
