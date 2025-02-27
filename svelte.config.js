@@ -4,7 +4,10 @@ export default {
     kit: {
         adapter: adapter(),
         paths: {
-            base: ''
+            base: '' // Cloudflare Pages needs this empty
+        },
+        prerender: {
+            default: true // Ensures all pages generate as static files
         }
     }
 };
