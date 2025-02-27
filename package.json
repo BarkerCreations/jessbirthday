@@ -13,8 +13,7 @@
     "svelte": "latest"
   },
   "devDependencies": {
-    "@sveltejs/adapter-static": "latest",
-    "vite": "latest",
-    "wrangler": "latest"
+    "@sveltejs/kit": "^2.0.0",
+    "@sveltejs/adapter-static": "^2.0.3"
   }
 }
