@@ -5,6 +5,23 @@
 		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%sveltekit.head%
+
+		<style>
+        /* Reset & Fullscreen Layout */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            background: #1a1a1b;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Prevents accidental scrolling */
+        }
+		</style>
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
