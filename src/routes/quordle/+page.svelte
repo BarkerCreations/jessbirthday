@@ -68,7 +68,7 @@
 	}
 
 	function saveAndAdvance() {
-		goto('/pico')
+		goto('/pico');
 	}
 </script>
 
@@ -81,10 +81,12 @@
 	</div>
 	<Keyboard layout="wordle" on:keydown={onKeydown} />
 
-	<Dialog bind:dialog on:close={() => console.log('closed')}>
-		<h1>Nicely done!</h1>
-		<img src="/quordle-win.png" alt="Quordle" style="width: 100px; border-radius: 10px;" />
-		<button on:click={saveAndAdvance}>Another puzzle?</button>
+	<Dialog bind:dialog on:close={saveAndAdvance}>
+		<div class="dialog">
+			<h1>Nicely done!</h1>
+			<img src="/quordle-win.png" alt="Quordle" style="width: 100px; border-radius: 10px;" />
+			<button on:click={saveAndAdvance}>Another puzzle?</button>
+		</div>
 	</Dialog>
 </div>
 
@@ -132,17 +134,17 @@
         border-radius: 5px;
     }
 
-		dialog {
+    .dialog {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         align-content: center;
         width: 80vw;
-		}
+    }
 
-		dialog button {
-				display: inline-block;
-				margin-top: 20px;
-		}
+    .dialog button {
+        display: inline-block;
+        margin-top: 20px;
+    }
 </style>
