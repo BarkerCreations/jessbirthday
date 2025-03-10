@@ -2,9 +2,11 @@
 	interface Props {
 		guesses: string[];
 		word: string;
+		currentGuess: string;
+		guessError: boolean;
 	}
 
-	let { guesses, word }: Props = $props();
+	let { currentGuess, guesses, word, guessError }: Props = $props();
 
 	function getTileClass(guess, index) {
 		if (!guess) return '';
@@ -15,19 +17,26 @@
 
 	function getRowClass(rowIndex, guesses) {
 		if (rowIndex === guesses.length) return 'current';
-		if (rowIndex > guesses.length || rowIndex > guesses.findIndex(g => g === word)) return 'compact mono';
+		if (rowIndex > guesses.length) return 'compact mono';
+		if (rowIndex > guesses.findIndex(g => g === word)) return 'compact mono'
 		return 'compact';
 	}
 
-	console.log(guesses, word);
+	function getTileContents(guess, guesses, rowIndex, colIndex) {
+		return rowIndex === guesses.length
+			? guess.charAt(colIndex)
+			: guesses[rowIndex]
+				? guesses[rowIndex][colIndex]
+				: ''
+	}
 </script>
 
 <div class="board">
 	{#each Array(9) as _, rowIndex}
 		<div class="grid-row {getRowClass(rowIndex, guesses)}">
 			{#each Array(5) as _, colIndex}
-				<div class="tile {getTileClass(guesses[rowIndex], colIndex)}">
-					{guesses[rowIndex] ? guesses[rowIndex][colIndex] : ''}
+				<div class="tile {getTileClass(guesses[rowIndex], colIndex)}" class:error={guessError}>
+					{ getTileContents(currentGuess, guesses, rowIndex, colIndex) }
 				</div>
 			{/each}
 		</div>
@@ -56,8 +65,8 @@
 
     /* Default compact row */
     .grid-row.compact .tile {
-        height: 3vw;
-        font-size: 0.7em;
+        height: 4vw;
+        font-size: 0.8em;
     }
 
 		.grid-row.compact.mono {
@@ -105,4 +114,9 @@
         border-color: #787c7e;
         color: white;
     }
+
+		.grid-row.current .error {
+				background-color: darkred;
+				color: white;
+		}
 </style>

@@ -1,12 +1,48 @@
 <script lang="ts">
 	import Board from './Board.svelte';
+	import Keyboard from 'svelte-keyboard';
 
 	let words = ['KLAUS', 'VIBES', 'CROWN', 'BILLS'];
 	let guesses: Array<string[]> = Array(4).fill([]).map(() => []);
 	let currentGuess = '';
+	let guessError = false;
+
+	const onKeydown = (event) => {
+		const key = event.detail.toLowerCase();
+		if (key === 'enter') {
+			submitGuess();
+		} else if (key === 'backspace') {
+			currentGuess = currentGuess.slice(0, -1);
+		} else if (currentGuess.length < 5) {
+			currentGuess += key;
+		}
+	};
 
 	function submitGuess() {
 		if (currentGuess.length === 5) {
+			if (words.includes(currentGuess.toUpperCase())) {
+				processGuess();
+				return;
+			}
+
+			fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${currentGuess}`)
+				.then(response => {
+					if (!response.ok) {
+						guessError = true;
+						setTimeout(() => {
+							guessError = false;
+							currentGuess = '';
+						}, 1000);
+						throw new Error('Invalid word');
+					}
+					return response.json();
+				})
+				.then(() => {
+					processGuess();
+				});
+		}
+
+		function processGuess() {
 			guesses = guesses.map((g, index) => {
 				// Don't keep guessing on completed words
 				if (g.includes(words[index])) return [...g, ''];
@@ -19,7 +55,7 @@
 				return guesses.some((g) => {
 					return g.join('').toLowerCase().includes(w.toLowerCase());
 				});
-			})
+			});
 
 			if (allGuessed) {
 				alert('You won!');
@@ -29,16 +65,13 @@
 </script>
 
 <div class="quordle-container">
-	<h1>Quordle* Jess Edition</h1>
+	<h1>Quordle* Special Edition</h1>
 	<div class="grid">
 		{#each words as word, i}
-			<Board {word} guesses={guesses[i]} />
+			<Board {currentGuess} {word} guesses={guesses[i]} {guessError} />
 		{/each}
 	</div>
-	<form action="">
-		<input bind:value={currentGuess} maxlength="5" autofocus />
-		<button on:click={submitGuess}>Submit</button>
-	</form>
+	<Keyboard layout="wordle" on:keydown={onKeydown} />
 </div>
 
 <style>
@@ -57,8 +90,8 @@
     .grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
-				grid-auto-rows: max-content;
-				justify-items: center;
+        grid-auto-rows: max-content;
+        justify-items: center;
         gap: 8px;
         width: 100vw; /* Adjusted to fit better */
         height: 65vh; /* Ensure the game fits */
