@@ -1,8 +1,12 @@
 <script lang="ts">
 	import Board from './Board.svelte';
 	import Keyboard from 'svelte-keyboard';
+	import Dialog from '../../components/Dialog.svelte';
 
-	let words = ['KLAUS', 'VIBES', 'CROWN', 'BILLS'];
+	import { goto } from '$app/navigation';
+
+	let dialog;
+	let words = ['KLAUS', 'VIBES', 'CROWN', 'SCOOT'];
 	let guesses: Array<string[]> = Array(4).fill([]).map(() => []);
 	let currentGuess = '';
 	let guessError = false;
@@ -58,9 +62,13 @@
 			});
 
 			if (allGuessed) {
-				alert('You won!');
+				dialog.showModal();
 			}
 		}
+	}
+
+	function saveAndAdvance() {
+		goto('/pico')
 	}
 </script>
 
@@ -72,6 +80,12 @@
 		{/each}
 	</div>
 	<Keyboard layout="wordle" on:keydown={onKeydown} />
+
+	<Dialog bind:dialog on:close={() => console.log('closed')}>
+		<h1>Nicely done!</h1>
+		<img src="/quordle-win.png" alt="Quordle" style="width: 100px; border-radius: 10px;" />
+		<button on:click={saveAndAdvance}>Another puzzle?</button>
+	</Dialog>
 </div>
 
 <style>
@@ -117,4 +131,18 @@
         cursor: pointer;
         border-radius: 5px;
     }
+
+		dialog {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        width: 80vw;
+		}
+
+		dialog button {
+				display: inline-block;
+				margin-top: 20px;
+		}
 </style>
