@@ -51,7 +51,7 @@
 			});
 
 			currentGuess = '';
-			const allGuessed = words.every((w, index) => {
+			const allGuessed = words.every((w, _) => {
 				return guesses.some((g) => {
 					return g.join('').toLowerCase().includes(w.toLowerCase());
 				});
@@ -93,17 +93,9 @@
         grid-auto-rows: max-content;
         justify-items: center;
         gap: 8px;
-        width: 100vw; /* Adjusted to fit better */
-        height: 65vh; /* Ensure the game fits */
-        max-width: 600px;
-    }
-
-    /* Ensure text input and button are below the grid */
-    .input-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 10px;
+        width: 100vw;
+        height: max-content;
+        margin-bottom: 40px;
     }
 
     input {
