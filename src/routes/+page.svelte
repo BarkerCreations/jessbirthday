@@ -14,12 +14,15 @@
     .container {
         text-align: left;
         padding: 20px;
+				max-width: 600px;
     }
 
     img.header {
         text-align: center;
         margin: 0 auto;
         display: block;
+				max-width: 250px;
+				width: 60%;
     }
 
     .game-grid {
@@ -30,6 +33,7 @@
         width: 90%;
         margin: 36px auto 0;
         justify-content: center;
+				justify-items: center;
     }
 
     .game-tile {
@@ -74,8 +78,7 @@
 <div class="container">
 	<img class="header" src="/header.png" alt="Main Banner" style="width: 70%; border-radius: 10px;" />
 	<h1>Happy Birthday Jess!</h1>
-	<p>I know we've been sending our puzzle achievements back-and-forth, but since today is about you I've made a couple
-		of Jess-themed games for your eyes only.</p>
+	<p>We've been sending our puzzle achievements back-and-forth, but since today is about you I've made a little Jess-themed game in lieu of a card.</p>
 	<p>Shall we begin?</p>
 
 	<div class="game-grid">

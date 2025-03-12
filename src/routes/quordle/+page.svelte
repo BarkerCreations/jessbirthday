@@ -55,6 +55,8 @@
 			});
 
 			currentGuess = '';
+			updateKeys();
+
 			const allGuessed = words.every((w, _) => {
 				return guesses.some((g) => {
 					return g.join('').toLowerCase().includes(w.toLowerCase());
@@ -67,8 +69,57 @@
 		}
 	}
 
-	function saveAndAdvance() {
-		goto('/pico');
+	function updateKeys() {
+		const keys = document.querySelectorAll('button.key');
+		keys.forEach(key => {
+			if (!key.querySelector('.keycap')) {
+				key.style.position = "relative";
+				const cap = document.createElement('div');
+				for (let i = 0; i < 4; i++) {
+					cap.appendChild(document.createElement('div'));
+				}
+
+				// const letter = key.innerHTML.trim();
+				cap.className = "keycap";
+				cap.style.position = "absolute";
+				cap.style.display = "grid";
+				cap.style.gridTemplateRows = "repeat(2, 1fr)"
+				cap.style.gridTemplateColumns = "repeat(2, 1fr)";
+				cap.style.opacity = 0.5;
+				cap.style.top = 0;
+				cap.style.bottom = 0;
+				cap.style.left = 0;
+				cap.style.right = 0;
+				cap.style.mouseEvents = "none";
+				key.appendChild(cap);
+			}
+
+			words.every((w, i) => {
+				// Check if the letter is in the word
+				// and was guessed in the correct position
+				const keyLetter = key.textContent.toLowerCase().trim();
+				const guessIncludesWord = guesses.some((g) => {
+					return g.join('').toLowerCase().includes(w.toLowerCase());
+				});
+
+				if (keyLetter && w.toLowerCase().includes(keyLetter) && guessIncludesWord) {
+					const selector = `.keycap div:nth-child(${i+1})`;
+					const keyQuadrant = key.querySelector(selector);
+					keyQuadrant.style.backgroundColor = "green";
+					return false;
+				}
+
+				// if it is in the word but not in the correct position
+				if (w.includes(key.innerHTML)) {
+					key.querySelector('.keycap').style.backgroundColor = "yellow";
+					return false;
+				}
+			});
+		});
+	}
+
+	function chooseGift() {
+		goto('/destinations');
 	}
 </script>
 
@@ -79,13 +130,14 @@
 			<Board {currentGuess} {word} guesses={guesses[i]} {guessError} />
 		{/each}
 	</div>
+
 	<Keyboard layout="wordle" on:keydown={onKeydown} />
 
-	<Dialog bind:dialog on:close={saveAndAdvance}>
+	<Dialog bind:dialog on:close={chooseGift}>
 		<div class="dialog">
 			<h1>Nicely done!</h1>
 			<img src="/quordle-win.png" alt="Quordle" style="width: 100px; border-radius: 10px;" />
-			<button on:click={saveAndAdvance}>Another puzzle?</button>
+			<button on:click={chooseGift}>Choose your present!</button>
 		</div>
 	</Dialog>
 </div>
@@ -99,10 +151,9 @@
         width: 100%;
         height: 100vh;
         padding: 0;
-        background: #161617; /* ChatGPT dark theme */
+        background: #161617;
     }
 
-    /* 2x2 Grid for Boards */
     .grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
