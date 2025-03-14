@@ -11,6 +11,15 @@
 </script>
 
 <style>
+		.bigger-screen {
+				display: none;
+		}
+
+		.bigger-screen h2 {
+				margin: 80px;
+				text-align: center;
+		}
+
     .container {
         text-align: left;
         padding: 20px;
@@ -65,6 +74,16 @@
     .active {
         border: 2px solid white;
     }
+
+		@media screen and (min-width: 600px) {
+				.bigger-screen {
+						display: initial;
+				}
+
+				.container {
+            display: none;
+				}
+    }
 </style>
 
 <div
@@ -106,4 +125,8 @@
 			<h2>{games.pico.name}</h2>
 		</div>
 	</div>
+</div>
+
+<div class="bigger-screen">
+	<h2>This weird birthday card thing is best viewed on a smaller screen. Open it on your phone!</h2>
 </div>
