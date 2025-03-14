@@ -214,6 +214,10 @@
         font-size: 1.5rem;
     }
 
+		.coin-container * {
+				outline: none;
+		}
+
     .coin-container {
         width: 100px;
         height: 100px;
