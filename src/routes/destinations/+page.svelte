@@ -43,7 +43,7 @@
         display: flex;
         flex-direction: column;
         background: rgb(40, 40, 40);
-        min-height: calc(100vh + 80px);
+        height: 100vh;
 				width: 100vw;
     }
 
@@ -71,6 +71,10 @@
     .bottom-section {
         padding: 20px 0;
     }
+
+		.bottom-section button {
+			margin-bottom: 120px;
+		}
 
     p {
         margin: 0 1.75rem 30px;

@@ -186,7 +186,7 @@
         align-items: center;
         justify-content: flex-start;
         width: 100vw;
-        min-height: calc(100vh + 80px);
+        height: 100vh;
         padding: 0;
         background: #161617;
     }
@@ -234,6 +234,6 @@
         border-radius: 16px;
         padding: 16px;
         color: white;
-        margin: 30px auto 0;
+        margin: 30px auto 120px;
     }
 </style>
