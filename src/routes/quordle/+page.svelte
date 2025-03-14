@@ -160,8 +160,8 @@
 		{/each}
 	</div>
 
-	<div class="keyboard-wrapper" style="width: 90vw;margin: 0 auto;overflow-x: hidden;">
-		<Keyboard --min-width="0" layout="wordle" on:keydown={onKeydown} />
+	<div class="keyboard-wrapper" style="width: 94vw;">
+		<Keyboard --min-width="1rem" layout="wordle" on:keydown={onKeydown} />
 	</div>
 
 	<button class="restart" on:click={restartGame}>Restart game</button>
