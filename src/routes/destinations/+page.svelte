@@ -50,7 +50,7 @@
 
     h1 {
         text-align: center;
-        margin: 0 0 18px 0;
+        margin: 0;
     }
 
     .iframe-container {
