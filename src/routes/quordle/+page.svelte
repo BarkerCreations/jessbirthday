@@ -161,7 +161,7 @@
 	</div>
 
 	<div class="keyboard-wrapper" style="width: 90%">
-		<Keyboard layout="wordle" on:keydown={onKeydown} />
+		<Keyboard --min-width="0" layout="wordle" on:keydown={onKeydown} />
 	</div>
 
 	<button class="restart" on:click={restartGame}>Restart game</button>
