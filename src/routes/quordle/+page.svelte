@@ -55,7 +55,7 @@
 			});
 
 			currentGuess = '';
-			updateKeys();
+			// updateKeys();
 
 			const allGuessed = words.every((w, _) => {
 				return guesses.some((g) => {
@@ -94,31 +94,60 @@
 				key.appendChild(cap);
 			}
 
+			const keyLetter = key.textContent.toLowerCase().trim();
+
 			words.every((w, i) => {
-				// Check if the letter is in the word
-				// and was guessed in the correct position
-				const keyLetter = key.textContent.toLowerCase().trim();
-				const guessIncludesWord = guesses.some((g) => {
-					return g.join('').toLowerCase().includes(w.toLowerCase());
+				const word = w.toLowerCase();
+				if (keyLetter.length === 0) return false;
+				if (!word.includes(keyLetter)) return false;
+
+				// We have a word and a key
+				// If any guess has the letter and the word has the letter
+				const anyGuessIncludesLetter = guesses.flat().some((g) => {
+						return g.includes(keyLetter) && word.includes(keyLetter);
 				});
 
-				if (keyLetter && w.toLowerCase().includes(keyLetter) && guessIncludesWord) {
-					const selector = `.keycap div:nth-child(${i+1})`;
-					const keyQuadrant = key.querySelector(selector);
-					keyQuadrant.style.backgroundColor = "green";
-					return false;
-				}
+				// const guessPerfectLetter = guesses.flat().some((g) => {
+				// 	if (!word.includes(keyLetter)) return false;
+				//
+				// 	return [...g].map((char, index) => {
+				// 		return word.indexOf(char.toLowerCase()) === index;
+				// 	})
+				// });
+
+				const selector = `.keycap div:nth-child(${i+1})`;
+				const keyQuadrant = key.querySelector(selector);
+				debugger;
+
+				// if (guessPerfectLetter) {
+				// 	keyQuadrant.style.backgroundColor = "green";
+				// 	return false;
+				// }
 
 				// if it is in the word but not in the correct position
-				if (w.includes(key.innerHTML)) {
-					key.querySelector('.keycap').style.backgroundColor = "yellow";
+				if (anyGuessIncludesLetter) {
+					keyQuadrant.style.backgroundColor = "yellow";
 					return false;
 				}
 			});
 		});
 	}
 
-	function chooseGift() {
+	function restartGame() {
+		currentGuess = '';
+		guesses = Array(4).fill([]).map(() => []);
+		guessError = false;
+
+		// const keys = document.querySelectorAll('button.key');
+		// keys.forEach(key => {
+		// 	const caps = key.querySelectorAll('.keycap');
+		// 	if (caps) {
+		// 		caps.forEach(cap => cap.remove());
+		// 	}
+		// });
+	}
+
+	function goToTravle() {
 		goto('/destinations');
 	}
 </script>
@@ -131,13 +160,15 @@
 		{/each}
 	</div>
 
-	<Keyboard layout="wordle" on:keydown={onKeydown} />
+	<Keyboard --min-width="2.2rem" layout="wordle" on:keydown={onKeydown} />
 
-	<Dialog bind:dialog on:close={chooseGift}>
+	<button class="restart" on:click={restartGame}>Restart game</button>
+
+	<Dialog bind:dialog on:close={goToTravle}>
 		<div class="dialog">
 			<h1>Nicely done!</h1>
 			<img src="/quordle-win.png" alt="Quordle" style="width: 100px; border-radius: 10px;" />
-			<button on:click={chooseGift}>Choose your present!</button>
+			<button on:click={goToTravle}>Another challenge!</button>
 		</div>
 	</Dialog>
 </div>
@@ -197,5 +228,15 @@
     .dialog button {
         display: inline-block;
         margin-top: 20px;
+    }
+
+    button.restart {
+        display: block;
+        background: transparent;
+        border: 1px solid white;
+        border-radius: 16px;
+        padding: 16px;
+        color: white;
+        margin: 40px auto 0;
     }
 </style>

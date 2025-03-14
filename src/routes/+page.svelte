@@ -45,9 +45,17 @@
         max-width: 30vw;
     }
 
+		h1 {
+				text-align: center;
+		}
+
     h2 {
         margin-bottom: 0;
     }
+
+		p {
+				text-align: center;
+		}
 
     .placeholder {
         border: 2px dashed gray;
