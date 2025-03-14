@@ -103,6 +103,7 @@
         background: rgb(40, 40, 40);
         height: 100vh;
         width: 100vw;
+        overflow: auto;
     }
 
     div.options {

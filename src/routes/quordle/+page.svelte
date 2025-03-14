@@ -189,6 +189,7 @@
         height: 100vh;
         padding: 0;
         background: #161617;
+        overflow: auto;
     }
 
     .grid {
