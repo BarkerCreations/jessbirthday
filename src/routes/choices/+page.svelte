@@ -42,7 +42,9 @@
 
 				<div class="info">
 					<h3>Onyx</h3>
-					<p>Asian food with a great Stephansplatz view. <a class="menu" href="https://www.docohotel.com/media/adlh0rcr/onyx_menuekarte_20240802.pdf" target="_blank">View Menu</a></p>
+					<p>Asian food with a great Stephansplatz view. <a class="menu"
+																														href="https://www.docohotel.com/media/adlh0rcr/onyx_menuekarte_20240802.pdf"
+																														target="_blank">View Menu</a></p>
 				</div>
 			</div>
 
@@ -55,7 +57,9 @@
 
 				<div class="info">
 					<h3>SevenNorth</h3>
-					<p>Israeli/Middle-eastern and some of the best steak in town. <a class="menu" href="https://sevennorthrestaurant.com/en/vienna/menu/" target="_blank">View Menu</a></p>
+					<p>Israeli/Middle-eastern and some of the best steak in town. <a class="menu"
+																																					 href="https://sevennorthrestaurant.com/en/vienna/menu/"
+																																					 target="_blank">View Menu</a></p>
 				</div>
 			</div>
 		</div>
@@ -87,7 +91,7 @@
 			</div>
 
 			<p>Tap on coin to flip.<br />
-			Rory is Onyx, Klaus is SevenNorth</p>
+				Rory is Onyx, Klaus is SevenNorth</p>
 		</div>
 	</Dialog>
 </div>
@@ -143,6 +147,7 @@
 
     h1 {
         text-align: center;
+        margin: 0 0 18px 0;
     }
 
     .bottom-section {
@@ -186,23 +191,23 @@
         align-items: center;
         align-content: center;
         width: 80vw;
-				height: 60vh;
+        height: 60vh;
     }
 
-		.dialog p {
-				text-align: center;
-				margin-top: 40px;
-		}
+    .dialog p {
+        text-align: center;
+        margin-top: 40px;
+    }
 
-		.dialog button.close {
-				position: absolute;
-				top: 10px;
-				right: 10px;
-				background: transparent;
-				border: transparent;
-				color: black;
-				font-size: 1.5rem;
-		}
+    .dialog button.close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: transparent;
+        border: transparent;
+        color: black;
+        font-size: 1.5rem;
+    }
 
     .coin-container {
         width: 100px;
@@ -223,7 +228,7 @@
         height: 100%;
         position: absolute;
         backface-visibility: hidden;
-				border-radius: 50%;
+        border-radius: 50%;
     }
 
     .heads {
