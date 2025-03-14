@@ -160,7 +160,7 @@
 		{/each}
 	</div>
 
-	<div class="keyboard-wrapper" style="width: 94vw;">
+	<div class="keyboard-wrapper" style="width: 94vw; scale: 0.95">
 		<Keyboard --min-width="1rem" layout="wordle" on:keydown={onKeydown} />
 	</div>
 
