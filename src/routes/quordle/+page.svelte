@@ -160,7 +160,7 @@
 		{/each}
 	</div>
 
-	<Keyboard --min-width="2.2rem" layout="wordle" on:keydown={onKeydown} />
+	<Keyboard layout="wordle" on:keydown={onKeydown} />
 
 	<button class="restart" on:click={restartGame}>Restart game</button>
 
