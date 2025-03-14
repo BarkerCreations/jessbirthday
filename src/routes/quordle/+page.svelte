@@ -183,7 +183,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
-        width: 100%;
+        width: 100vw;
         height: 100vh;
         padding: 0;
         background: #161617;
