@@ -73,24 +73,24 @@
 		const keys = document.querySelectorAll('button.key');
 		keys.forEach(key => {
 			if (!key.querySelector('.keycap')) {
-				key.style.position = "relative";
+				key.style.position = 'relative';
 				const cap = document.createElement('div');
 				for (let i = 0; i < 4; i++) {
 					cap.appendChild(document.createElement('div'));
 				}
 
 				// const letter = key.innerHTML.trim();
-				cap.className = "keycap";
-				cap.style.position = "absolute";
-				cap.style.display = "grid";
-				cap.style.gridTemplateRows = "repeat(2, 1fr)"
-				cap.style.gridTemplateColumns = "repeat(2, 1fr)";
+				cap.className = 'keycap';
+				cap.style.position = 'absolute';
+				cap.style.display = 'grid';
+				cap.style.gridTemplateRows = 'repeat(2, 1fr)';
+				cap.style.gridTemplateColumns = 'repeat(2, 1fr)';
 				cap.style.opacity = 0.5;
 				cap.style.top = 0;
 				cap.style.bottom = 0;
 				cap.style.left = 0;
 				cap.style.right = 0;
-				cap.style.mouseEvents = "none";
+				cap.style.mouseEvents = 'none';
 				key.appendChild(cap);
 			}
 
@@ -104,7 +104,7 @@
 				// We have a word and a key
 				// If any guess has the letter and the word has the letter
 				const anyGuessIncludesLetter = guesses.flat().some((g) => {
-						return g.includes(keyLetter) && word.includes(keyLetter);
+					return g.includes(keyLetter) && word.includes(keyLetter);
 				});
 
 				// const guessPerfectLetter = guesses.flat().some((g) => {
@@ -115,7 +115,7 @@
 				// 	})
 				// });
 
-				const selector = `.keycap div:nth-child(${i+1})`;
+				const selector = `.keycap div:nth-child(${i + 1})`;
 				const keyQuadrant = key.querySelector(selector);
 				debugger;
 
@@ -126,7 +126,7 @@
 
 				// if it is in the word but not in the correct position
 				if (anyGuessIncludesLetter) {
-					keyQuadrant.style.backgroundColor = "yellow";
+					keyQuadrant.style.backgroundColor = 'yellow';
 					return false;
 				}
 			});
@@ -160,7 +160,9 @@
 		{/each}
 	</div>
 
-	<Keyboard layout="wordle" on:keydown={onKeydown} />
+	<div class="keyboard-wrapper" style="width: 95%">
+		<Keyboard layout="wordle" on:keydown={onKeydown} />
+	</div>
 
 	<button class="restart" on:click={restartGame}>Restart game</button>
 
@@ -174,9 +176,9 @@
 </div>
 
 <style>
-		h1 {
-				margin: 0 0 18px 0;
-		}
+    h1 {
+        margin: 0 0 18px 0;
+    }
 
     .quordle-container {
         display: flex;
