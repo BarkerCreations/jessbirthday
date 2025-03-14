@@ -101,7 +101,7 @@
         display: flex;
         flex-direction: column;
         background: rgb(40, 40, 40);
-        height: calc(100vh + 80px);
+        min-height: calc(100vh + 80px);
         width: 100vw;
     }
 

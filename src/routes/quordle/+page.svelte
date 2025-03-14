@@ -186,7 +186,7 @@
         align-items: center;
         justify-content: flex-start;
         width: 100vw;
-        height: calc(100vh + 80px);
+        min-height: calc(100vh + 80px);
         padding: 0;
         background: #161617;
     }
