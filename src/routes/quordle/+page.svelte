@@ -174,6 +174,10 @@
 </div>
 
 <style>
+		h1 {
+				margin: 18px 0;
+		}
+
     .quordle-container {
         display: flex;
         flex-direction: column;
@@ -193,16 +197,7 @@
         gap: 8px;
         width: 100vw;
         height: max-content;
-        margin-bottom: 40px;
-    }
-
-    input {
-        width: 80%;
-        max-width: 300px;
-        height: 40px;
-        text-align: center;
-        font-size: 1.2em;
-        border-radius: 5px;
+        margin-bottom: 30px;
     }
 
     button {
@@ -237,6 +232,6 @@
         border-radius: 16px;
         padding: 16px;
         color: white;
-        margin: 40px auto 0;
+        margin: 30px auto 0;
     }
 </style>
