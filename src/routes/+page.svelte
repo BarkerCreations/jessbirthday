@@ -50,7 +50,7 @@
         border-radius: 10px;
         cursor: pointer;
         text-align: center;
-        aspect-ratio: 1 / 1;
+        aspect-ratio: 2 / 3;
         max-width: 30vw;
     }
 
