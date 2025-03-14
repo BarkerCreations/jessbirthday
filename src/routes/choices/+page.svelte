@@ -97,7 +97,7 @@
         display: flex;
         flex-direction: column;
         background: rgb(40, 40, 40);
-        height: 100vh;
+        height: calc(100vh + 80px);
         width: 100vw;
     }
 
