@@ -175,7 +175,7 @@
 
 <style>
 		h1 {
-				margin: 18px 0;
+				margin: 0 0 18px 0;
 		}
 
     .quordle-container {
